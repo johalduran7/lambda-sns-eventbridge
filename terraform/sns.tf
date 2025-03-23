@@ -11,6 +11,6 @@ resource "aws_sns_topic" "lambda_dollar_notifications" {
 resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn = aws_sns_topic.lambda_dollar_notifications.arn
   protocol  = "email"
-  endpoint  = "johalduran@gmail.com" # Replace with your email address
+  endpoint  = "johnplaceholderemail@gmail.com" # Replace with your email address
 }
 

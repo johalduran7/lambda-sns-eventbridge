@@ -38,6 +38,32 @@ resource "aws_iam_policy" "lambda_logs_policy" {
   })
 }
 
+resource "aws_iam_policy" "lambda_dynamodb_policy" {
+  name        = "lambda_dynamodb_policy"
+  description = "DynamoDB policy for lambda"
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "dynamodb:PutItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:DeleteTable",
+          "dynamodb:CreateTable",
+          "dynamodb:UpdateTable",
+          "dynamodb:Scan",
+          "dynamodb:GetItem"
+        ],
+        Resource = [
+          "arn:aws:dynamodb:us-east-1:948586925757:table/price_dollar"
+        ]
+      }
+    ]
+  })
+}
+
 
 resource "aws_iam_role_policy_attachment" "lambda_logs_policy_attachment" {
   role       = aws_iam_role.lambda_execution_role.name
@@ -55,6 +81,12 @@ resource "aws_iam_role_policy_attachment" "lambda_SNS_execution_policy" {
 resource "aws_iam_role_policy_attachment" "lambda_CW_execution_policy" {
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+
+resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy_attachment" {
+  role       = aws_iam_role.lambda_execution_role.name
+  policy_arn = aws_iam_policy.lambda_dynamodb_policy.arn
 }
 
 
@@ -88,35 +120,4 @@ resource "aws_sns_topic_policy" "lambda_dollar_notifications_policy" {
 }
 
 
-resource "aws_iam_policy" "lambda_dynamodb_policy" {
-  name        = "lambda_dynamodb_policy"
-  description = "DynamoDB policy for lambda"
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "dynamodb:PutItem",
-          "dynamodb:UpdateItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:DeleteTable",
-          "dynamodb:CreateTable",
-          "dynamodb:UpdateTable",
-          "dynamodb:Scan",
-          "dynamodb:GetItem"
-        ],
-        Resource = [
-          "arn:aws:dynamodb:us-east-1:948586925757:table/price_dollar"
-        ]
-      }
-    ]
-  })
-}
 
-
-
-resource "aws_iam_role_policy_attachment" "lambda_dynamodb_policy_attachment" {
-  role       = aws_iam_role.lambda_execution_role.name
-  policy_arn = aws_iam_policy.lambda_dynamodb_policy.arn
-}

@@ -1,4 +1,4 @@
-# to trigger asynchronously: $ aws lambda invoke --function-name lambda_sns_dollar --invocation-type Event response.json
+# To trigger asynchronously: $ aws lambda invoke --function-name lambda_sns_dollar --invocation-type Event response.json
 
 # using the same function as the other module. It doesn't really matter
 resource "aws_lambda_function" "lambda_sns_dollar" {

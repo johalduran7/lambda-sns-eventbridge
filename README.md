@@ -1,6 +1,6 @@
-# lambda_sns_dollar
+# Dollar Price tracker in Colombia
 
-This project deploys a Lambda function that fetches the dollar price, stores it in DynamoDB, and sends notifications via SNS. It also includes infrastructure for logging, scheduling, and different deployment environments (Dev and Prod).
+This project deploys a Lambda function that retrieves the dollar price from a local currency exchange, stores the data in DynamoDB, and sends notifications through SNS. It also includes infrastructure for logging, scheduling, and managing multiple deployment environments (Dev and Prod). The goal of this project is to demonstrate how AWS serverless services can be used to automate simple, personal tasks in a cost-effective manner.
 
 ## Project Structure
 

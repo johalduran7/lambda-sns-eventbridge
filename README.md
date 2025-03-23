@@ -24,7 +24,7 @@ Example of output:
 
 The project is structured as follows:
 
--   `modules/lambda/lambda_sns_dollar/`: Contains the Lambda function code and ZIP file.
+-   `./terraform/`: Contains the Lambda function code and ZIP file.
     -   `lambda_function.py`: The Python code for the Lambda function.
     -   `lambda_function.zip`: The ZIP archive of the Lambda function code.
 -   `README.md`: This file.

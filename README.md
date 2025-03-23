@@ -120,20 +120,24 @@ The project uses the following AWS resources:
 
 ###   Deployment
 
-1.  **Package Lambda Function:**
+1.  **Access ./terraform:**
+    ```bash
+    cd ./terraform
+    ```
+2.  **Package Lambda Function:**
     ```bash
     cd ./terraform
     zip lambda_function.zip lambda_function.py
     ```
-2.  **Initialize Terraform:**
+3.  **Initialize Terraform:**
     ```bash
     terraform init
     ```
-3.  **Plan Terraform Deployment:**
+4.  **Plan Terraform Deployment:**
     ```bash
     terraform plan
     ```
-4.  **Apply Terraform Deployment:**
+5.  **Apply Terraform Deployment:**
     ```bash
     terraform apply
     ```

@@ -19,7 +19,7 @@ resource "aws_iam_role" "lambda_execution_role" {
 resource "aws_iam_policy" "lambda_logs_policy" {
   name        = "lambda_logs_policy"
   description = "Policy to allow Lambda to filter and query log events"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
@@ -48,7 +48,7 @@ resource "aws_iam_role_policy_attachment" "lambda_logs_policy_attachment" {
 resource "aws_iam_role_policy_attachment" "lambda_SNS_execution_policy" {
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSElasticBeanstalkRoleSNS"
-  
+
 }
 
 # Allow Lambda to write to CW
@@ -67,19 +67,19 @@ resource "aws_sns_topic_policy" "lambda_dollar_notifications_policy" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect    = "Allow",
+        Effect = "Allow",
         Principal = {
           Service = "lambda.amazonaws.com"
         },
-        Action    = "SNS:Publish",
-        Resource  = aws_sns_topic.lambda_dollar_notifications.arn,
+        Action   = "SNS:Publish",
+        Resource = aws_sns_topic.lambda_dollar_notifications.arn,
         Condition = {
           ArnLike = {
             "aws:SourceArn" = [
               aws_lambda_function.lambda_sns_dollar.arn
               #,
               #aws_lambda_alias.prod_lambda_alias.arn
-              ]
+            ]
           }
         }
       }
@@ -91,7 +91,7 @@ resource "aws_sns_topic_policy" "lambda_dollar_notifications_policy" {
 resource "aws_iam_policy" "lambda_dynamodb_policy" {
   name        = "lambda_dynamodb_policy"
   description = "DynamoDB policy for lambda"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {

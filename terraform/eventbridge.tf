@@ -18,12 +18,12 @@ module "eventbridge" {
       {
         name  = "lambda-loves-cron"
         arn   = "${aws_lambda_alias.prod_lambda_alias.arn}"
-        input = jsonencode({"job": "cron-by-rate"})
+        input = jsonencode({ "job" : "cron-by-rate" })
       }
     ]
   }
   tags = {
-    Name = "lambda_rule"
+    Name      = "lambda_rule"
     Terraform = "yes"
   }
 }

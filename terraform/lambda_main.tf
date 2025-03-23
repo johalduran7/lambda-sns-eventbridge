@@ -4,12 +4,12 @@
 resource "aws_lambda_function" "lambda_sns_dollar" {
   function_name = "lambda_sns_dollar"
   handler       = "modules/lambda/lambda_sns_dollar/lambda_function.lambda_handler" # Python handler
-  runtime       = "python3.9"                                     # Specify the Python runtime version
+  runtime       = "python3.9"                                                       # Specify the Python runtime version
   role          = aws_iam_role.lambda_execution_role.arn
   timeout       = 10
-#   dead_letter_config {
-#     target_arn="${aws_sqs_queue.dlq_queue.arn}"
-#   }
+  #   dead_letter_config {
+  #     target_arn="${aws_sqs_queue.dlq_queue.arn}"
+  #   }
   source_code_hash = filebase64sha256("modules/lambda/lambda_sns_dollar/lambda_function.zip")
 
   # Specify the S3 bucket and object if you upload the ZIP file to S3, or use the `filename` attribute for local deployment
@@ -17,13 +17,13 @@ resource "aws_lambda_function" "lambda_sns_dollar" {
 
   environment {
     variables = {
-      url = "https://script.google.com/macros/s/AKfycbxoDsLKnhaaQ8kcFz7DApoi7E9VEIZEHcqeMZRAVRPGxi1YNdcI0izmHdzxOIGgbbM/exec"
+      url     = "https://script.google.com/macros/s/AKfycbxoDsLKnhaaQ8kcFz7DApoi7E9VEIZEHcqeMZRAVRPGxi1YNdcI0izmHdzxOIGgbbM/exec"
       sns_arn = "${aws_sns_topic.lambda_dollar_notifications.arn}"
     }
   }
 
-  reserved_concurrent_executions=10
-  publish= true # whenever I want to publish a new version
+  reserved_concurrent_executions = 10
+  publish                        = true # whenever I want to publish a new version
 
 }
 

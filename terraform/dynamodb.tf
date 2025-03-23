@@ -3,9 +3,9 @@
 
 
 resource "aws_dynamodb_table" "price_dollar" {
-  name           = "price_dollar"
-  billing_mode   = "PAY_PER_REQUEST" # On-demand billing mode
-  hash_key       = "id"
+  name         = "price_dollar"
+  billing_mode = "PAY_PER_REQUEST" # On-demand billing mode
+  hash_key     = "id"
 
   attribute {
     name = "id"

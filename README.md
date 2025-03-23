@@ -15,8 +15,9 @@ Example of output:
 
 <table>
   <tr>
-    <td><img src="./resources/lambda_infrastructure.jpg" alt="Setup" width="500"></td>
-    <td><img src="./resources/lambda.jpg" alt="Setup" width="500"></td>
+    <td><img src="./resources/lambda_infrastructure.jpg" alt="Setup" width="300"></td>
+    <td><img src="./resources/lambda.jpg" alt="Setup" width="300"></td>
+    <td><img src="./resources/lambda_email.jpg" alt="Setup" width="300"></td>
   </tr>
 </table>
 

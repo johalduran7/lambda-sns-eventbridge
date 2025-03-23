@@ -5,6 +5,6 @@ variable "region" {
 
 variable "email" {
   type        = string
-  default     = "johalduran@gmail.com"
+  default     = "johnduran.placeholder@gmail.com"
   description = "Email for subscription to SNS Topic"
 }

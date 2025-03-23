@@ -148,5 +148,5 @@ The project uses the following AWS resources:
 You can trigger the Lambda function asynchronously using the AWS CLI:
 
 ```bash
-aws lambda invoke --function-name lambda_sns_dollar --invocation-type Event response.json
+aws lambda invoke --region us-east-2 --function-name lambda_sns_dollar --invocation-type Event response.json
 ```

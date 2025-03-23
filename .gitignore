@@ -1,0 +1,16 @@
+# Ignore everything by default
+*
+*.pem
+
+# Whitelist specific file types
+!*.tf
+!*.py
+!*.yaml
+!*.yml
+!*.zip
+!*.html
+!*.txt
+!Dockerfile
+!.gitignore
+
+.terraform/

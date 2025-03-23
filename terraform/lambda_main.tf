@@ -1,19 +1,23 @@
 # To trigger asynchronously: $ aws lambda invoke --function-name lambda_sns_dollar --invocation-type Event response.json
 
-# using the same function as the other module. It doesn't really matter
+provider "aws" {
+  region = var.region # Replace with your preferred region
+}
+
+
 resource "aws_lambda_function" "lambda_sns_dollar" {
   function_name = "lambda_sns_dollar"
   handler       = "lambda_function.lambda_handler" # Python handler
-  runtime       = "python3.9"                                                       # Specify the Python runtime version
+  runtime       = "python3.9"                      # Specify the Python runtime version
   role          = aws_iam_role.lambda_execution_role.arn
   timeout       = 10
   #   dead_letter_config {
   #     target_arn="${aws_sqs_queue.dlq_queue.arn}"
   #   }
-  source_code_hash = filebase64sha256("lambda_function.zip")
+  source_code_hash = filebase64sha256("../lambda_function.zip")
 
   # Specify the S3 bucket and object if you upload the ZIP file to S3, or use the `filename` attribute for local deployment
-  filename = "lambda_function.zip" # Path to your ZIP file
+  filename = "../lambda_function.zip" # Path to your ZIP file
 
   environment {
     variables = {
@@ -27,7 +31,7 @@ resource "aws_lambda_function" "lambda_sns_dollar" {
 
 }
 
-# cd ./terraform
+# cd ./
 # zip lambda_function.zip lambda_function.py
 
 

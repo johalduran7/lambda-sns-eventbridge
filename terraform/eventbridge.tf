@@ -2,8 +2,8 @@
 
 # Create event bridge to trigger Lambda
 module "eventbridge" {
-  source = "terraform-aws-modules/eventbridge/aws"
-
+  source = "terraform-aws-modules/eventbridge/aws" #Module in public registry https://registry.terraform.io/modules/terraform-aws-modules/eventbridge/aws/latest
+  role_name = "eventbridge_role_${var.region}"
   create_bus = false
 
   rules = {

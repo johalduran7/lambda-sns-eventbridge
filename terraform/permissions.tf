@@ -1,6 +1,6 @@
 
 resource "aws_iam_role" "lambda_execution_role" {
-  name = "lambda_sns_dollar_role"
+  name = "lambda_sns_dollar_role-${var.region}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -17,7 +17,7 @@ resource "aws_iam_role" "lambda_execution_role" {
 }
 
 resource "aws_iam_policy" "lambda_logs_policy" {
-  name        = "lambda_logs_policy"
+  name        = "lambda_logs_policy-${var.region}"
   description = "Policy to allow Lambda to filter and query log events"
   policy = jsonencode({
     Version = "2012-10-17",
@@ -31,7 +31,7 @@ resource "aws_iam_policy" "lambda_logs_policy" {
           "logs:StopQuery"
         ],
         Resource = [
-          "arn:aws:logs:us-east-1:948586925757:log-group:/aws/lambda/lambda_sns_dollar:*"
+          aws_lambda_function.lambda_sns_dollar.arn
         ]
       }
     ]
@@ -39,7 +39,7 @@ resource "aws_iam_policy" "lambda_logs_policy" {
 }
 
 resource "aws_iam_policy" "lambda_dynamodb_policy" {
-  name        = "lambda_dynamodb_policy"
+  name        = "lambda_dynamodb_policy-${var.region}"
   description = "DynamoDB policy for lambda"
   policy = jsonencode({
     Version = "2012-10-17",
@@ -57,7 +57,7 @@ resource "aws_iam_policy" "lambda_dynamodb_policy" {
           "dynamodb:GetItem"
         ],
         Resource = [
-          "arn:aws:dynamodb:us-east-1:948586925757:table/price_dollar"
+          aws_dynamodb_table.price_dollar.arn
         ]
       }
     ]

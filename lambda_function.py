@@ -22,6 +22,9 @@ dynamodb = boto3.resource("dynamodb")
 table_name = "price_dollar"  # Name of the DynamoDB table
 table = dynamodb.Table(table_name)
 
+utc_now = datetime.utcnow()
+utc_minus_5 = utc_now - timedelta(hours=5)
+
 def check_if_item_exists_in_dynamodb():
     try:
         response = table.scan()
@@ -184,7 +187,8 @@ def lambda_handler(event, context):
                 'message': 'Lambda successfully run',
                 'USD Price': str(current_price),
                 'Previous Price': str(previous_price),
-                'TRM': str(result_TRM)
+                'TRM': str(result_TRM),
+                'timestamp': utc_minus_5.isoformat() 
             })
         }    
     

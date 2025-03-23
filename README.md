@@ -47,7 +47,7 @@ The project uses the following AWS resources:
 ###   Lambda Function and Related Resources
 
 -   `aws_lambda_function.lambda_sns_dollar`: Defines the Lambda function.
-    -   `handler`:  Specifies the entry point of the Lambda function (`modules/lambda/lambda_sns_dollar/lambda_function.lambda_handler`).
+    -   `handler`:  Specifies the entry point of the Lambda function (`lambda_function.lambda_handler`).
     -   `runtime`:  Specifies the Python runtime version (python3.9).
     -   `role`:  Specifies the IAM role for the Lambda function.
     -   `source_code_hash` and `filename`:  Used to deploy the Lambda function code from a ZIP file.
@@ -62,7 +62,7 @@ The project uses the following AWS resources:
 
 ###   EventBridge
 
--   `module "eventbridge"`:  Uses the `terraform-aws-modules/eventbridge/aws` module to create an EventBridge rule to trigger the Lambda function on a schedule.
+-   `module "eventbridge"`:  Uses the `./terraform/eventbridge.tf` module to create an EventBridge rule to trigger the Lambda function on a schedule.
 -   `aws_lambda_permission.eventbridge_resource_based_policy_permission`: Grants EventBridge permission to invoke the Lambda function.
 
 ###   SNS Topic and Subscription
@@ -82,7 +82,7 @@ The project uses the following AWS resources:
 ###   Lambda Function Deployment
 
 -   The Lambda function code is packaged into a ZIP file (`lambda_function.zip`) and deployed using the `source_code_hash` and `filename` attributes of the `aws_lambda_function` resource.
--   The Lambda function's entry point is specified by the `handler` attribute (`modules/lambda/lambda_sns_dollar/lambda_function.lambda_handler`).
+-   The Lambda function's entry point is specified by the `handler` attribute (`./terraform/lambda_function.lambda_handler`).
 
 ###   Environment Variables
 
@@ -122,7 +122,8 @@ The project uses the following AWS resources:
 
 1.  **Package Lambda Function:**
     ```bash
-    zip modules/lambda/lambda_sns_dollar/lambda_function.zip modules/lambda/lambda_sns_dollar/lambda_function.py
+    cd ./terraform
+    zip lambda_function.zip lambda_function.py
     ```
 2.  **Initialize Terraform:**
     ```bash

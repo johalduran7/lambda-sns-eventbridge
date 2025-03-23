@@ -1,3 +1,4 @@
+
 resource "aws_iam_role" "lambda_execution_role" {
   name = "lambda_sns_dollar_role"
   assume_role_policy = jsonencode({

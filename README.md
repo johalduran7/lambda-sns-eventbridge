@@ -2,6 +2,17 @@
 
 This project deploys a Lambda function that retrieves the dollar price from a local currency exchange, stores the data in DynamoDB, and sends notifications through SNS. It also includes infrastructure for logging, scheduling, and managing multiple deployment environments (Dev and Prod). The goal of this project is to demonstrate how AWS serverless services can be used to automate simple, personal tasks in a cost-effective manner.
 
+Example of output:
+```bash
+{
+  "message": "Lambda successfully run",
+  "USD Price": "4070",
+  "Previous Price": "4070",
+  "TRM": "4,168.82",
+  "timestamp": "2025-03-23T10:37:14.234936"
+}
+```
+
 <table>
   <tr>
     <td><img src="./resources/lambda_infrastructure.jpg" alt="Setup" width="500"></td>

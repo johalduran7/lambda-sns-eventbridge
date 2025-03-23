@@ -4,8 +4,8 @@ This project deploys a Lambda function that retrieves the dollar price from a lo
 
 <table>
   <tr>
-    <td><img src="./resources/lambda.jpg" alt="Setup" width="400"></td>
-    <td><img src="./resources/lambda.jpg" alt="Setup" width="400"></td>
+    <td><img src="./resources/lambda.jpg" alt="Setup" width="500"></td>
+    <td><img src="./resources/lambda.jpg" alt="Setup" width="500"></td>
   </tr>
 </table>
 
